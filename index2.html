@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hiệu ứng bóng bay có chữ</title>
+    <style>
+        /* Đặt kích thước và nền cho màn hình */
+        body {
+            margin: 0;
+            overflow: hidden;
+            background-color: rgb(67, 159, 138);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+
+        /* Văn bản chính giữa màn hình */
+        .welcome-text {
+            font-size: 5em;
+            color: #FFFFFF;
+            font-weight: bold;
+            margin-bottom: 20px; /* Đặt khoảng cách giữa văn bản và bóng bay */
+            text-align: center;
+            text-shadow: 
+                -1px -1px 0 #FF0000, /* Bóng đỏ ở góc trên bên trái */
+                 1px -1px 0 #FF0000, /* Bóng đỏ ở góc trên bên phải */
+                -1px  1px 0 #FF0000, /* Bóng đỏ ở góc dưới bên trái */
+                 1px  1px 0 #FF0000; /* Bóng đỏ ở góc dưới bên phải */
+        }
+        
+        /* Tạo hình dạng và màu sắc cho bóng bay */
+        .balloon {
+            width: 120px;
+            height: 140px;
+            background-color: #FF69B4;
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            position: absolute;
+            bottom: -100px;
+            animation: float 10s ease-in-out infinite;
+            display: flex;
+            justify-content: center;
+        }
+
+        /* Tạo dây cho bóng bay */
+        .string {
+            width: 2px;
+            height: 50px;
+            background-color: #555;
+            position: absolute;
+            bottom: -50px;
+        }
+        button {
+            position: relative;
+            z-index: 1 ;
+            padding: 15px 25px; /* Kích thước nút */
+            font-size: 25px; /* Kích thước chữ trong nút */
+            color: rgb(240, 240, 240); /* Màu chữ trong nút */
+            background-color: rgb(26, 76, 64); /* Màu nền của nút */
+            border: none; /* Xóa viền nút */
+            border-radius: 5px; /* Bo tròn góc nút */
+            cursor: pointer; /* Hiển thị con trỏ chuột khi di chuột qua nút */
+            transition: background-color 0.3s; /* Hiệu ứng chuyển đổi màu nền */
+            bottom: -150px;
+
+    }
+
+        /* Định nghĩa chuyển động nổi lên của bóng bay */
+        @keyframes float {
+            0% {
+                transform: translateY(0) translateX(0);
+                opacity: 1;
+            }
+            50% {
+                transform: translateY(-100vh) translateX(20px);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) translateX(-20px);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    
+
+<!-- Chữ hiển thị giữa màn hình -->
+<div class="welcome-text">Happy birthday!</div>
+
+<!-- Khu vực chứa bóng bay -->
+<div id="balloon-container"></div>
+
+
+
+<a href="index3.html"><button>Tiếp tục</button></a>
+
+<script>
+    
+    // Hàm tạo bóng bay ngẫu nhiên
+    function createBalloon() {
+        const balloon = document.createElement("div");
+        balloon.classList.add("balloon");
+
+        // Đặt vị trí ngẫu nhiên cho bóng bay
+        balloon.style.left = Math.random() * window.innerWidth + "px";
+        balloon.style.backgroundColor = getRandomColor();
+
+        // Tạo dây cho bóng bay
+        const string = document.createElement("div");
+        string.classList.add("string");
+        balloon.appendChild(string);
+
+        document.getElementById("balloon-container").appendChild(balloon);
+
+        // Xóa bóng bay khi đã bay khỏi màn hình
+        balloon.addEventListener("animationend", () => {
+            balloon.remove();
+        });
+    }
+
+    // Hàm lấy màu sắc ngẫu nhiên
+    function getRandomColor() {
+        const colors = ["#FF69B4", "#FF4500", "#FFD700", "#32CD32", "#1E90FF"];
+        return colors[Math.floor(Math.random() * colors.length)];
+    }
+
+    // Tạo bóng bay mỗi giây
+    setInterval(createBalloon, 1000);
+</script>
+
+</body>
+</html>

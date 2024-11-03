@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nhập mật khẩu</title>
+    <link rel="stylesheet" href="style.css">
+    
+    <script>
+        function validatePassword() {
+            const passwordInput = document.querySelector("input[type='password']").value;
+            const correctPassword = "20121973"; // Mật khẩu cố định
+
+            if (passwordInput === correctPassword) {
+                alert("Yeah! Bạn đã vào được rồi, chào mừng nhé! 🎉");
+                window.location.href = "index2.html"; // Đường dẫn trang đích
+                return false; // Ngăn không gửi form và chuyển hướng trực tiếp
+            } else {
+                alert("Mật khẩu không chính xác, thử lại nhé bạn! 😅");
+                return false; // Ngăn không gửi form nếu mật khẩu sai
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="box">
+        <div class="form">
+            <h2>Sign In</h2>
+            
+            <div class="inputbox">
+                <input type="password" required="required">
+                <span>Password</span>
+                <i></i>
+            </div>
+            <div class="links">
+                <a href="#">Quên mật khẩu?</a>
+                <a href="#">Đăng ký</a>
+            </div>
+            <!-- Chỉnh submit thành button và gọi hàm validatePassword -->
+            <button onclick="return validatePassword()">Đăng nhập</button>
+        </div>
+    </div>
+</body>
+</html>

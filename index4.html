@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Only</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden; /* Ẩn cuộn trang */
+        }
+        .video-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%; /* Mở rộng 100% chiều rộng */
+            height: 100%; /* Mở rộng 100% chiều cao */
+        }
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        button {
+            position: absolute;
+            bottom: 20px; /* Đặt nút ở dưới cùng */
+            left: 50%; /* Căn giữa */
+            transform: translateX(-50%); /* Điều chỉnh để căn chính xác */
+            padding: 12px 25px;
+            font-size: 20px;
+            color: #ffffff; /* Màu chữ */
+            background: linear-gradient(45deg, #ff416c, #ff4b2b); /* Màu nền gradient rực rỡ */
+            border: none;
+            border-radius: 30px; /* Bo góc cho nút */
+            cursor: pointer; /* Chỉ báo con trỏ khi di chuột */
+            box-shadow: 0 4px 15px rgba(255, 65, 108, 0.5); /* Đổ bóng cho nút */
+            transition: transform 0.2s, box-shadow 0.2s; /* Hiệu ứng chuyển động */
+        }
+        button:hover {
+            transform: scale(1.05); /* Tăng kích thước khi di chuột */
+            box-shadow: 0 6px 20px rgba(255, 65, 108, 0.7); /* Tăng bóng khi di chuột */
+        }
+    </style>
+</head>
+<body>
+    <div class="video-container">
+        <!-- Sử dụng định dạng URL nhúng để video phát đúng -->
+        <iframe src="https://www.youtube.com/embed/GyRMa9Zotpg?autoplay=1&controls=0&rel=0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+    </div>
+    <a href="index5.html"><button>Tiếp tục</button></a>
+</body>
+</html>
