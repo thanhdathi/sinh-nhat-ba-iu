@@ -4,85 +4,77 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Happy birthday</title>
-    <link rel="stylesheet" href="style2.css">
-
-    
-    
-    
     <style>
         body {
-            margin: 10;
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background-image: url('https://as1.ftcdn.net/v2/jpg/01/88/60/60/1000_F_188606037_TmePLAgAO5zNpf4HMojSzXqfHkI1Ivtb.jpg'); /* Thay bằng đường dẫn hình ảnh */
-            background-size: cover;
-            color: rgb(0, 0, 0);
-            font-family: 'Arial', sans-serif;
+            height: 100vh; 
+            margin: 0; 
+            display: flex; 
+            justify-content: center; /* Căn giữa theo chiều ngang */ 
+            align-items: center; /* Căn giữa theo chiều dọc */ 
+            background-color: #bb5d5d; /* Nền đen */ 
+            color: #fff; /* Màu chữ trắng */ 
+            font-family: Arial, sans-serif;
+            flex-direction: column; /* Căn theo chiều dọc */
+        }
+        .datetime {
             text-align: center;
-            position: relative;
+            font-size: 2em;
+            margin-bottom: 20px;
         }
-        .card {
-            background: rgba(0, 0, 0, 0.4); /* Màu nền bán trong suốt */
-            padding: 1px;
-            border-radius: 20px;
-            width: 600px; /* Độ rộng của thiệp */
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+        .marquee {
+            width: 100%;
+            overflow: hidden;
+            white-space: nowrap;
+            color: #fff; /* Màu chữ trắng */
+            margin-bottom: 20px; /* Khoảng cách dưới */
         }
-        h1 {
-            margin: 0;
-            font-size: 2.5em;
+        .marquee span {
+            display: inline-block;
+            padding-left: 100%;
+            animation: marquee 20s linear infinite;
+            font-size: 2em; /* Tăng kích thước chữ */
         }
-        h2 {
-            margin: 10px 0;
-        }
-        .message {
-            margin-top: 20px;
-            font-size: 1.2em;
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-100%); }
         }
         button {
-          padding: 20px 30px; /* Kích thước nút */
-          font-size: 16px; /* Kích thước chữ trong nút */
-          color: white; /* Màu chữ trong nút */
-          background-color: #337aa3; /* Màu nền của nút */
-          border: none; /* Xóa viền nút */
-          border-radius: 5px; /* Bo tròn góc nút */
-          cursor: pointer; /* Hiển thị con trỏ chuột khi di chuột qua nút */
-          transition: background-color 0.3s; /* Hiệu ứng chuyển đổi màu nền */
-          position: absolute;
-          bottom: 50px;
-          right: 100;
-        } 
+            position: absolute;
+            bottom: 20px; /* Đặt nút ở dưới cùng */
+            left: 50%; /* Căn giữa */
+            transform: translateX(-50%); /* Điều chỉnh để căn chính xác */
+            padding: 12px 25px;
+            font-size: 20px;
+            color: #ffffff; /* Màu chữ */
+            background: linear-gradient(45deg, #ff416c, #ff4b2b); /* Màu nền gradient rực rỡ */
+            border: none;
+            border-radius: 30px; /* Bo góc cho nút */
+            cursor: pointer; /* Chỉ báo con trỏ khi di chuột */
+            box-shadow: 0 4px 15px rgba(255, 65, 108, 0.5); /* Đổ bóng cho nút */
+            transition: transform 0.2s, box-shadow 0.2s; /* Hiệu ứng chuyển động */
+        }
+        button:hover {
+            transform: scale(1.2); /* Tăng kích thước khi di chuột */
+            box-shadow: 0 6px 15px rgba(255, 65, 108, 0.7); /* Tăng bóng khi di chuột */
+        }
     </style>
+    <script>
+        function updateDateTime() {
+            const now = new Date();
+            const dateTimeString = now.toLocaleString('vi-VN', {timeZone: 'Asia/Ho_Chi_Minh'});
+            document.getElementById('currentDateTime').textContent = dateTimeString;
+        }
+        setInterval(updateDateTime, 1000);
+        window.onload = updateDateTime;
+    </script>
 </head>
 <body>
-    
-    
-    <a href="index4.html"><button>Tiếp tục</button></a>
-    
-    <div class="card">
-        <h1>Happy Birthday!</h1>
-        <h2 id="date"></h2>
-        <p class="message">"Chúc ba sinh nhật vui vẻ! Cảm ơn ba vì tất cả những điều mà ba đã làm cho gia đình chúng ta. Hy vọng ba sẽ có một ngày tràn ngập niềm vui và hạnh phúc bên những người mà ba yêu thương. Con luôn bên ba!"</p>
+    <div class="marquee">
+        <span>Chúc ba sinh nhật vui vẻ! Cảm ơn ba vì tất cả những điều mà ba đã làm cho gia đình chúng ta. Hy vọng ba sẽ có một ngày tràn ngập niềm vui và hạnh phúc bên những người mà ba yêu thương. Con luôn bên ba</span>
     </div>
-
-    <script>
-    
-
-
-
-        // Hiển thị ngày tháng hiện tại
-        function displayCurrentDate() {
-            const dateElement = document.getElementById("date");
-            const now = new Date();
-            const options = { year: 'numeric', month: 'long', day: 'numeric' };
-            dateElement.textContent = now.toLocaleDateString('vi-VN', options);
-        }
-        
-        displayCurrentDate(); // Gọi hàm để hiển thị ngày tháng
-    </script>
+    <div class="datetime">
+        <p id="currentDateTime"></p>
+    </div>
+    <a href="index4.html"><button>Tiếp tục</button></a>
 </body>
 </html>
